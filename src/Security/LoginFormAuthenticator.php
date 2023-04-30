@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
-
+ 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
@@ -42,14 +43,24 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
+        $user = $token->getUser();
+        if ($user instanceof User) {
+            $roles = $user->getRoles();
+            var_dump($roles);
+            switch (true) {
+                case in_array('ROLE_PATIENT', $roles):
+                    return new RedirectResponse($this->urlGenerator->generate('app_patient_index'));
+                case in_array('ROLE_ADMIN', $roles):
+                    return new RedirectResponse($this->urlGenerator->generate('app_admin_index'));
+                case in_array('ROLE_DOCTEUR', $roles):
+                    return new RedirectResponse($this->urlGenerator->generate('app_docteur_index'));
+                default:
+                    // Redirect to a default route if the user has no role
+                    return new RedirectResponse($this->urlGenerator->generate('app_default_index'));
+            }
         }
-
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_admin_index'));
-         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
+    
 
     protected function getLoginUrl(Request $request): string
     {
