@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Docteur{% endblock %}
+
+{% block body %}
+    <h1>Docteur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ docteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ docteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ docteur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ docteur.email }}</td>
+            </tr>
+            <tr>
+                <th>Ncin</th>
+                <td>{{ docteur.ncin }}</td>
+            </tr>
+            <tr>
+                <th>Numerotelephone</th>
+                <td>{{ docteur.numerotelephone }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ docteur.age }}</td>
+            </tr>
+            <tr>
+                <th>Motdepasse</th>
+                <td>{{ docteur.motdepasse }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ docteur.specialite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_docteur_index') }}">back to list</a>
+
+    <a href="{{ path('app_docteur_edit', {'id': docteur.id}) }}">edit</a>
+
+    {{ include('docteur/_delete_form.html.twig') }}
+{% endblock %}

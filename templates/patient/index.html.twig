@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patient index{% endblock %}
+
+{% block body %}
+    <h1>Patient index</h1>
+<div> <a href="{{path('app_rendez_vous_index')}}"> ajouter un rendez vous  </a> </div>
+    <table class="table">
+        <thead><div class="w-4/5 m-auto text-center">
+        <div class="py-12 border-b border-gray-200">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Ncin</th>
+                <th>Numerotelephone</th>
+                <th>Age</th>
+                <th>Motdepasse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for patient in patients %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.nom }}</td>
+                <td>{{ patient.prenom }}</td>
+                <td>{{ patient.ncin }}</td>
+                <td>{{ patient.numerotelephone }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.motdepasse }}</td>
+                <td>
+                    <a href="{{ path('app_patient_show', {'id': patient.id}) }}">show</a>
+                    <a href="{{ path('app_patient_edit', {'id': patient.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div></div>
+    <a href="{{ path('app_patient_new') }}">Create new</a>
+{% endblock %}
