@@ -35,7 +35,7 @@
         {% endfor %}
         </tbody></div> </div>
     </table>
-{% if app.User %}
+{% if is_granted('ROLE_PATIENT') %}
     <a href="{{ path('app_rendez_vous_new') }}">Create new</a>
-    {% endif %}
+{% endif %}
 {% endblock %}
