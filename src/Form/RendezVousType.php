@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Form;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\RendezVous;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +25,17 @@ class RendezVousType extends AbstractType
                     'disabled' => $options['new'], // make the 'etat' field nomodifiable  for new entities
                 ])  
              
-            ->add('patient')
+            ->add('user', EntityType::class, [
+                'class' => 'App\Entity\User',
+                'choice_label' => 'nom', 
+                'query_builder' => function (UserRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->andWhere('u.roles LIKE :roles')
+                        ->setParameter('roles', '%ROLE_PATIENT%');
+                },
+            ])// Replace 'username' with the actual property of User entity you want to use as the label
+            
+        
             ->add('temps')
         ;
     }

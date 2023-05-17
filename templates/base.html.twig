@@ -71,6 +71,15 @@
                                     >Admin
                                     </a>
                                 </li> #}
+                                 {% if is_granted('ROLE_ADMIN') %}
+                                   <li class="mr-3">
+                                    <a
+                                            class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                            href="/admin"
+                                            @click="isOpen = false"
+                                    >admin
+                                    </a>
+                                    {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
                                    <li class="mr-3">
                                     <a
@@ -102,12 +111,13 @@
                                 </li>  {% endif %}
                                 <li class="mr-3">
                                     <a
-                                            class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                            class="inline-block text-gray-300 no-underline hover:text-gray-200 hover:text-underline py-2 px-4 " 
                                             href="/{{app.user ? 'logout' : 'login'}}"
-                                            @click="isOpen = false">
-                                            {{app.user ? 'Logout' : 'Login'}} 
-                                        
+                                           @click="isOpen = false" >
+                                            {{app.user ? 'logout' : 'login'}} 
                                     </a>
+
+                                    
                                 </li>
                             </ul>
                         </div>

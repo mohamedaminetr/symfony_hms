@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,6 +28,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $prenom = null;
+
+    
+
+    #[ORM\OneToMany(mappedBy: 'userrendezvous', targetEntity: RendezVous::class)]
+    private Collection $rendezvous;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: RendezVous::class)]
+    private Collection $rendez_vous;
+
+    public function __construct()
+    {
+        $this->Rendezvous = new ArrayCollection();
+        $this->rendez_vous = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -97,5 +119,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RendezVous>
+     */
+    public function getRendezvous(): Collection
+    {
+        return $this->rendezvous;
+    }
+
+    public function addRendezvou(RendezVous $rendezvou): self
+    {
+        if (!$this->rendezvous->contains($rendezvou)) {
+            $this->rendezvous->add($rendezvou);
+            $rendezvou->setUserRendezvous($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRendezvou(RendezVous $rendezvou): self
+    {
+        if ($this->rendezvous->removeElement($rendezvou)) {
+            // set the owning side to null (unless already changed)
+            if ($rendezvou->getUserRendezvous() === $this) {
+                $rendezvou->setUserRendezvous(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Repository\RendezVousRepository;
+use App\Repository\UserRepository;
 use App\Entity\Docteur;
 use App\Form\DocteurType;
 use App\Repository\DocteurRepository;
@@ -14,14 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocteurController extends AbstractController
 {
     #[Route('/', name: 'app_docteur_index', methods: ['GET'])]
-    public function index(DocteurRepository $docteurRepository, RendezVousRepository $rendezVousRepository): Response
+    public function index(DocteurRepository $docteurRepository, RendezVousRepository $rendezVousRepository, UserRepository $UserRepository): Response
     {
         $docteurs = $docteurRepository->findAll();
         $rendez_vouses = $rendezVousRepository->findAll();
-    
+        $user = $UserRepository->findAll();
         return $this->render('docteur/index.html.twig', [
             'docteurs' => $docteurs,
             'rendez_vouses' => $rendez_vouses,
+            'user' => $user
         ]);
     }
     

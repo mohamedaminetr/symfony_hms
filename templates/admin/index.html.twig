@@ -8,45 +8,40 @@
 
     <table class="table">
         <thead><div class="w-4/5 m-auto text-center">
+        
         <div class="py-12 border-b border-gray-200">
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Email</th>
-                <th>Motdepasse</th>
-                <th>Ncin</th>
-                <th>Numerotelephone</th>
-                <th>Age</th>
-                <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
-        {% for admin in admins %}
+        {% for admin in user %}
+         {% if admin.roles[0]=='ROLE_ADMIN' %}  
             <tr>
-                <td>{{ admin.id }}</td>
+              <td>{{ admin.id }}</td>
                 <td>{{ admin.nom }}</td>
                 <td>{{ admin.prenom }}</td>
                 <td>{{ admin.email }}</td>
-                <td>{{ admin.motdepasse }}</td>
-                <td>{{ admin.ncin }}</td>
-                <td>{{ admin.numerotelephone }}</td>
-                <td>{{ admin.age }}</td>
+              
+               
                 <td>
-                    <a href="{{ path('app_admin_show', {'id': admin.id}) }}">show</a>
-                    <a href="{{ path('app_admin_edit', {'id': admin.id}) }}">edit</a>
+                    <a href="{{ path('app_user_show', {'id': admin.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': admin.id}) }}">edit</a>
                 </td>
                 
             </tr>
             
         {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
+           
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
 </div>
 </div>
-    <a href="{{ path('app_admin_new') }}">Create new</a>
+    <a href="{{ path('app_register_admin') }}">Create new Admin</a>
 {% endblock %}

@@ -26,6 +26,23 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Email'
                 ],
             ])
+            ->add('nom', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'autocomplete' => 'nom',                     
+                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none',
+                    'placeholder' => 'Nom'
+                ],
+            ])
+            ->add('prenom', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'autocomplete' => 'prenom',                     
+                    'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none',
+                    'placeholder' => 'Prenom'
+                ],
+            ])
+            
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Patient;
 use App\Form\PatientType;
+use App\Repository\UserRepository;
 use App\Repository\PatientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,9 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class PatientController extends AbstractController
 {
     #[Route('/', name: 'app_patient_index', methods: ['GET'])]
-    public function index(PatientRepository $patientRepository): Response
+    public function index(PatientRepository $patientRepository,UserRepository $UserRepository): Response
     {
         return $this->render('patient/index.html.twig', [
+            'user' => $UserRepository->findAll(),
             'patients' => $patientRepository->findAll(),
         ]);
     }
