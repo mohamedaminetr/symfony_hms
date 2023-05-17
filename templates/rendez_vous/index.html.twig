@@ -20,9 +20,12 @@
         </thead>
         <tbody>
         {% for rendez_vou in rendez_vouses %}
+         
             <tr>
-          
+
                 <td>{{ rendez_vou.id }}</td>
+                
+                <td>{{ rendez_vou.getUser().nom }}</td>
                 <td>{{ rendez_vou.temps ? rendez_vou.temps|date('H-i') : '' }}</td>
                 <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
             <td disabled="disabled" > {{ rendez_vou.etat   }} </td> 
