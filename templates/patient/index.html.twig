@@ -18,7 +18,9 @@
             </tr>
         </thead>    
         <tbody>
-      {% if app.user and 'ROLE_PATIENT' in app.user.roles %}
+
+
+         {% if app.user and 'ROLE_PATIENT' in app.user.roles %}
     <tr>
         <td>{{ app.user.id }}</td>
         <td>{{ app.user.email }}</td>
@@ -30,8 +32,27 @@
         </td>
     </tr>
 {% endif %}
+ {% if is_granted('ROLE_ADMIN') %}
+        {% for patient in user %}
+        {% if 'ROLE_PATIENT' in patient.roles %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.nom }}</td>
+                <td>{{ patient.prenom }}</td>
+            
+                <td>
+                   <a href="{{ path('app_user_show', {'id': patient.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': patient.id}) }}">edit</a>
+                </td>
+            </tr>
+      
+           
+            {% endif %}
+        {% endfor %}
+        {% endif %}
         </tbody>
     </table>
 </div></div>
-   {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('app_register_patient') }}">Create new Patient</a> {% endif %}
+  {% if is_granted('ROLE_ADMIN') %}  <a href="{{ path('app_register_patient') }}">Create new Patient</a> {% endif %}
 {% endblock %}

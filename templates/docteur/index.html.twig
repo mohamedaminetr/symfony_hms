@@ -17,6 +17,7 @@
             </tr>
         </thead>
         <tbody>
+        {% if is_granted('ROLE_ADMIN') %}
         {% for docteur in user %}
     {% if docteur.roles[0] == 'ROLE_DOCTEUR' %}
         <tr>      <td>{{ docteur.id }}</td>
@@ -33,10 +34,25 @@
         </tr>
     {% endif %}
 {% else %}
-    <tr>
-        <td colspan="10">no records found</td>
-    </tr>
 {% endfor %}
+{% endif %}
+
+   
+    {% if  app.user and 'ROLE_DOCTEUR' in app.user.roles %}
+        <tr>      <td>{{ app.user.id }}</td>
+            <td>{{ app.user.email }}</td>
+                  <td>{{ app.user.nom }}</td>
+                        <td>{{ app.user.prenom }}</td>
+            <td>
+                <a href="{{ path('app_user_show', {'id': app.user.id}) }}">show</a>
+                <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">edit</a>
+                   
+          
+                
+            </td>
+        </tr>
+    {% endif %}
+
 
 
         
@@ -44,7 +60,7 @@
         
     </table>
 <br> 
-       <a href="{{ path('app_register_docteur') }}">Create new Docteur</a>
+      {% if is_granted('ROLE_ADMIN')  %} <a href="{{ path('app_register_docteur') }}">Create new Docteur</a> {% endif %}
     {% endif %}
     
      <table class="table">

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use App\Entity\RendezVous;
 use App\Form\RendezVousType;
+use App\Form\RendezVousEditType;
 use App\Repository\RendezVousRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,7 +58,7 @@ class RendezVousController extends AbstractController
     #[Route('/{id}/edit', name: 'app_rendez_vous_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, RendezVous $rendezVou, RendezVousRepository $rendezVousRepository): Response
     {
-        $form = $this->createForm(RendezVousType::class, $rendezVou);
+        $form = $this->createForm(RendezVousEditType::class, $rendezVou);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
