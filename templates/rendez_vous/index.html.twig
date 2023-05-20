@@ -10,7 +10,7 @@
         <div class="py-12 border-b border-gray-200">
             <tr>
                 <th>Id</th>
-                <th> nom </th> 
+                <th> nom de patient</th> 
                 <th>Temps</th>
                 <th>Date</th>
                 <th>Etat</th>
@@ -20,12 +20,13 @@
         </thead>
         <tbody>
         {% for rendez_vou in rendez_vouses %}
-         
+         {% if app.user == rendez_vou.user %}
             <tr>
 
                 <td>{{ rendez_vou.id }}</td>
                 
-                <td>{{ rendez_vou.getUser().nom }}</td>
+               <td>{{ rendez_vou.user.nom ?? '' }}</td>
+                <td>{{ rendez_vou.user.prenom ?? '' }}</td>
                 <td>{{ rendez_vou.temps ? rendez_vou.temps|date('H-i') : '' }}</td>
                 <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
             <td disabled="disabled" > {{ rendez_vou.etat   }} </td> 
@@ -35,10 +36,8 @@
                 </td>
                 
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+        
+            {% endif %}
         {% endfor %}
         </tbody></div> </div>
     </table>

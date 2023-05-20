@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\UserRepository;
 use App\Entity\RendezVous;
 use App\Form\RendezVousType;
 use App\Repository\RendezVousRepository;
@@ -14,9 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class RendezVousController extends AbstractController
 {
     #[Route('/', name: 'app_rendez_vous_index', methods: ['GET'])]
-    public function index(RendezVousRepository $rendezVousRepository): Response
+    public function index(RendezVousRepository $rendezVousRepository, UserRepository $UserRepository): Response
     {
         return $this->render('rendez_vous/index.html.twig', [
+            'user' => $UserRepository->findAll(),
             'rendez_vouses' => $rendezVousRepository->findAll(),
         ]);
     }
