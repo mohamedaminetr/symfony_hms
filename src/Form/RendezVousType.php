@@ -2,8 +2,12 @@
 
 namespace App\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use DateTime;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual; 
 use App\Entity\RendezVous;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints\Time;
 use Symfony\Component\Security\Core\Security;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
@@ -14,10 +18,21 @@ class RendezVousType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {$user = $this->security->getUser();
+        $currentDateTime = $this->getCurrentDateTime();
         $builder
            
-            ->add('date') 
-            ->add('temps')
+        ->add('date', null, [
+            'data' => $currentDateTime,
+            'constraints' => [
+                new GreaterThanOrEqual([
+                    'value' => $currentDateTime,
+                    'message' => 'La date du rendez-vous doit être supérieure ou égale à la date actuelle.',
+                ]),
+            ],
+        ])
+        ->add('temps', null, [
+            
+        ])
                 ->add('etat' ,ChoiceType::class,[
                     'choices' => [
                         'accepter ' => 'accepte',
@@ -51,7 +66,11 @@ class RendezVousType extends AbstractType
             
         ;
     }
-
+    private function getCurrentDateTime(): DateTime
+{
+    return new DateTime();
+}
+ 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
