@@ -12,12 +12,29 @@ class UserEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('password')
-            ->add('nom')
-            ->add('prenom')
+            ->add('email', null, [
+                'attr' => [
+                    'style' => 'margin-bottom: 10px; margin-left: 10px;'
+                ],
+            ])
+            ->add('password', null, [
+                'attr' => [
+                    'style' => 'margin-bottom: 10px; margin-left: 10px;'
+                ],
+            ])
+            ->add('nom', null, [
+                'attr' => [
+                    'style' => 'margin-bottom: 10px; margin-left: 10px;'
+                ],
+            ])
+            ->add('prenom', null, [
+                'attr' => [
+                    'style' => 'margin-bottom: 10px; margin-left: 10px;'
+                ],
+            ])
         ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Hopitale</title>
+
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+     <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <style>
+        h2 {
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <header id="menu-jk">
+    
+        <div id="nav-head" class="header-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3  col-sm-12"  style="color:#000;font-weight:bold; font-size:42px; margin-top: 1% !important;"><a href="index.html">Hopital</a>
+                       <a data-toggle="collapse" data-target="#menu" href="#menu" ><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
+                    </div>
+                    <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li><a href="Index.html">Acceuil</a></li>
+                            <li><a href="A propos.html">A propos</a></li>
+                            <li><a href="Contacter_nous.html">Contact</a></li>
+                            <li><a href="https://127.0.0.1:8000/login">S'inscrire</a></li>
+                            <li><a href="S'identifier.html">S'identifier</a></li>  
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+                        <a class="btn btn-success" href="https://127.0.0.1:8000/login">Réserver un rendez-vous</a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+    <section id="contacter_nous" class="contact-us-single">
+        <div class="row no-margin">
+    
+            <div  class="col-sm-12 cop-ck">
+                <form method="post"><br>
+                <h2 >Créer Votre Compte</h2><br>
+                    <div class="row cf-ro">
+                        <div  class="col-sm-3"><label>Nom :</label></div>
+                        <div class="col-sm-8"><input type="text" placeholder="Nom" class="form-control input-sm" required ></div>
+                    </div>
+                    <div class="row cf-ro">
+                        <div  class="col-sm-3"><label>Prénom :</label></div>
+                        <div class="col-sm-8"><input type="text" placeholder="Prénom" class="form-control input-sm" required ></div>
+                    </div>
+                    <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Email :</label></div>
+                        <div class="col-sm-8"><input type="text" name="emailid" placeholder="Email" class="form-control input-sm"  required></div>
+                    </div>
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Téléphone :</label></div>
+                        <div class="col-sm-8"><input type="text" name="mobileno" placeholder="Numéro de téléphone" class="form-control input-sm" required ></div>
+                    </div>
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Mot de passe <span class="text-danger">* :</span></label></div>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                   
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label></label></div>
+                        <div class="col-sm-8">
+                         <button class="btn btn-success btn-sm" type="submit" name="submit">Envoyer Message</button>
+                        </div>
+                </div>
+            </form>
+            </div>
+     
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+       
+                <div class="col-md-6 col-sm-12">
+                    <ul class="list-unstyled link-list">
+                        <li><a ui-sref="acceuil" href="Index.html">Acceuil</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="about" href="A propos.html">A propos</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="contact" href="Contacter_nous.html">Contacter Nous</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="sidentifier" href="S'identifier.html">S'identifier</a><i class="fa fa-angle-right"></i></li>
+                        <li><a ui-sref="sinscrire" href="https://127.0.0.1:8000/login">S'inscrire</a><i class="fa fa-angle-right"></i></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12 map-img">
+                    <h2>Contacter Nous</h2>
+                    <address class="md-margin-bottom-40"><br>
+                        Téléphone: +216 73 367 160<br>
+                        Email: <a href="mailto:someone@example.com?subject=Questions" style="color:silver"> hmshospital@gmail.com</a><br>
+                        Ouverture: Du 8h à 00h 
+                    </address>
+                </div>
+            </div>
+        </div>
+        
+    
+    </footer>
+    <div class="copy">
+            <div class="container">Copyright© 2023
+            </div>
+    
+        </div>
+</body>
+
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/scroll-nav/js/jquery.easing.min.js"></script>
+<script src="assets/plugins/scroll-nav/js/scrolling-nav.js"></script>
+<script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+
+<script src="assets/js/script.js"></script>
+
+
+
+</html>

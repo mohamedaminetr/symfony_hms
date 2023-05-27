@@ -49,7 +49,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             var_dump($roles);
             switch (true) {
                 case in_array('ROLE_PATIENT', $roles):
-                    return new RedirectResponse($this->urlGenerator->generate('app_patient_index'));
+                    return new RedirectResponse($this->urlGenerator->generate('app_rendez_vous_index'));
                 case in_array('ROLE_ADMIN', $roles):
                     return new RedirectResponse($this->urlGenerator->generate('app_admin_index'));
                 case in_array('ROLE_DOCTEUR', $roles):

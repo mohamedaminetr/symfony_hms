@@ -5,14 +5,38 @@
 {% block body %}
    
 {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_DOCTEUR') %}
+<br><br><br><br><br><br><br>
+<style>
+table,td,tr,th {
+border: 1px Solid black;
+padding:10px;
+}
+a{
+font-weight: bold;
+color:green;
+}
+h1{
+text-align:center;
+font-weight: bold;
+}
+section
+{
+margin-left:20px;
+}
+</style>
+ <h1>Docteur index</h1>
+<section id="contacter_nous" class="contact-us-single">
+    <div class="row no-margin">
+        <div  class="col-sm-12 cop-ck">
     <table class="table">
         <thead><div class="w-4/5 m-auto text-center">
         <div class="py-12 border-b border-gray-200">
-            <tr> <h1>Docteur index</h1>
+            <tr>
                  <th>Id</th>
                 <th>Email</th>
                   <th>Nom</th>
                     <th>Prenom</th>
+                    <th>Traitement</th>
                 
             </tr>
         </thead>
@@ -25,7 +49,7 @@
                   <td>{{ docteur.nom }}</td>
                         <td>{{ docteur.prenom }}</td>
             <td>
-                <a href="{{ path('app_user_show', {'id': docteur.id}) }}">show</a>
+                <a href="{{ path('app_user_show', {'id': docteur.id}) }}">show</a> |
                 <a href="{{ path('app_user_edit', {'id': docteur.id}) }}">edit</a>
                    
           
@@ -44,7 +68,7 @@
                   <td>{{ app.user.nom }}</td>
                         <td>{{ app.user.prenom }}</td>
             <td>
-                <a href="{{ path('app_user_show', {'id': app.user.id}) }}">show</a>
+                <a href="{{ path('app_user_show', {'id': app.user.id}) }}">show</a> |
                 <a href="{{ path('app_user_edit', {'id': app.user.id}) }}">edit</a>
                    
           
@@ -69,8 +93,10 @@
         <div class="py-12 border-b border-gray-200">
             <tr>
                 <th>Id</th>
+                 <th> Patient </th>
                 <th>Temps</th>
                 <th>Date</th>
+               
                 <th>Etat</th>
               
             </tr>
@@ -80,8 +106,10 @@
         {% if rendez_vou.etat=='accepte'  %}
     <tr>
         <td>{{ rendez_vou.id }}</td>
+        <td> {{ rendez_vou.user.nom ?? ''}}</td>
         <td>{{ rendez_vou.temps ? rendez_vou.temps|date('H-i') : '' }}</td>
         <td>{{ rendez_vou.date ? rendez_vou.date|date('Y-m-d') : '' }}</td>
+
         <td disabled="disabled">{{ rendez_vou.etat}}</td> 
 
     </tr>{% endif %}
@@ -92,6 +120,9 @@
 {% endfor %}
         </tbody></div> </div> 
     </table>
+    </div>
+    </div>
+    </section>
 </div></div>
 <br> </br>
    

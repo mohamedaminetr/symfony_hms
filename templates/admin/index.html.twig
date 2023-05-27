@@ -3,9 +3,29 @@
 {% block title %}Admin index{% endblock %}
 
 {% block body %}
-<br> <br> <br>
+<br><br><br><br><br><br><br>
+<style>
+table,td,tr,th {
+border: 1px Solid black;
+padding:10px;
+}
+a{
+font-weight: bold;
+color:green;
+}
+h1{
+text-align:center;
+font-weight: bold;
+}
+section
+{
+margin-left:20px;
+}
+</style>
     <h1>Admin index</h1>
-
+<section id="contacter_nous" class="contact-us-single">
+    <div class="row no-margin">
+        <div  class="col-sm-12 cop-ck">
     <table class="table">
         <thead><div class="w-4/5 m-auto text-center">
         
@@ -15,6 +35,7 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Email</th>
+                <th>Traitement</th>
                 
             </tr>
         </thead>
@@ -29,7 +50,7 @@
               
                
                 <td>
-                    <a href="{{ path('app_user_show', {'id': admin.id}) }}">show</a>
+                    <a href="{{ path('app_user_show', {'id': admin.id}) }}">show</a> |
                     <a href="{{ path('app_user_edit', {'id': admin.id}) }}">edit</a>
                 </td>
                 
@@ -41,7 +62,12 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    </div>
+    </section>
 </div>
 </div>
-    <a href="{{ path('app_register_admin') }}">Create new Admin</a>
+<br>
+    <a href="{{ path('app_register_admin') }}" style="margin-left:20px;">Create new Admin</a>
+    <br><br><br><br><br><br><br><br><br><br>
 {% endblock %}

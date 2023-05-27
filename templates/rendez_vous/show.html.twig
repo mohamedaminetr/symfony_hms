@@ -9,8 +9,22 @@
 <br>
 <br>
 <br>
-    <h1>RendezVous</h1>
-
+<style>
+table,td,tr,th {
+border: 1px Solid black;
+padding:10px;
+}
+a{
+font-weight: bold;
+color:green;
+}
+h1{
+text-align:center;
+font-weight: bold;
+}
+</style>
+    <h1>Rendez Vous</h1>
+    <br><br><br>
     <table class="table">
         <tbody>
             <tr>
@@ -30,11 +44,11 @@
                 <td>  {{ rendez_vou.etat }}</td>
             </tr>
         </tbody>
-    </table>
+    </table><br><br>
 
     <a href="{{ path('app_rendez_vous_index') }}">back to list</a>
 
-    <a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}">edit</a>
 
-    {{ include('rendez_vous/_delete_form.html.twig') }}
+
+  
 {% endblock %}
